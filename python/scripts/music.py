@@ -2,6 +2,7 @@ import pygame
 
 class Music():
     def __init__(self):
+        pygame.init()
         pygame.mixer.init()
         pygame.mixer.music.set_volume(0.7)
         self.song = None
