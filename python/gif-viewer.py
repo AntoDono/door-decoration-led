@@ -17,7 +17,7 @@ from PIL import Image
 class GifViewer(SampleBase):
     def __init__(self, *args, **kwargs):
         super(GifViewer, self).__init__(*args, **kwargs)
-        self.parser.add_argument("-fp", "--filepath", help="Path of the gif", default="../../../merryxmas.gif")
+        self.parser.add_argument("-fp", "--filepath", help="Path of the gif")
 
     def run(self):
         gif = Image.open(self.args.filepath)
