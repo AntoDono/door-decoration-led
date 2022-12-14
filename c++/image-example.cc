@@ -69,7 +69,7 @@ static ImageVector LoadImageAndScaleImage(const char *filename,
   }
 
   for (Magick::Image &image : result) {
-    image.scale(Magick::Geometry(target_width, target_height));
+    image.resize(Magick::Geometry(target_width, target_height));
   }
 
   return result;
