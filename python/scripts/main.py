@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from gifViewer import GifViewer
+# from gifViewer import GifViewer
 from music import Music
 import os.path as path
 
