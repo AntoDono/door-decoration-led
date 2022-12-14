@@ -6,12 +6,12 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from PIL import Image
 
 
-if len(sys.argv) < 2:
-    sys.exit("Require a gif argument")
-else:
-    image_file = sys.argv[1]
+# if len(sys.argv) < 2:
+#     sys.exit("Require a gif argument")
+# else:
+#     image_file = sys.argv[1]
 
-gif = Image.open(image_file)
+gif = Image.open("../../../merryxmas.gif")
 
 try:
     num_frames = gif.n_frames
