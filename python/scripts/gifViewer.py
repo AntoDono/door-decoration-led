@@ -48,9 +48,9 @@ class GifViewer(SampleBase):
             # must copy the frame out of the gif, since thumbnail() modifies the image in-place
             frame = gif.copy()
             frame.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
-            frame.show()
+            # frame.show()
             frame.resize((matrix.width, matrix.height))
-            frame.show()
+            # frame.show()
             canvas = matrix.CreateFrameCanvas()
             canvas.SetImage(frame.convert("RGB"))
             canvases.append(canvas)
