@@ -69,7 +69,7 @@ static ImageVector LoadImageAndScaleImage(const char *filename,
   }
 
   for (Magick::Image &image : result) {
-    image.resize(Magick::Geometry(target_width, target_height));
+    image.scale(Magick::Geometry(target_width, target_height));
   }
 
   return result;
@@ -80,7 +80,7 @@ static ImageVector LoadImageAndScaleImage(const char *filename,
 // interface as well as the FrameCanvas we use in the double-buffering of the
 // animted image.
 void CopyImageToCanvas(const Magick::Image &image, Canvas *canvas) {
-  const int offset_x = 0, offset_y = 0;  // If you want to move the image.
+  const int offset_x = abs((canvas.width - image.widtH)/2), offset_y = abs((canvas.height - image.height)/2);  // If you want to move the image.
   // Copy all the pixels to the canvas.
   for (size_t y = 0; y < image.rows(); ++y) {
     for (size_t x = 0; x < image.columns(); ++x) {
