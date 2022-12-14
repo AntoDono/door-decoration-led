@@ -30,10 +30,10 @@ class GifViewer(SampleBase):
 
         # Configuration for the matrix
         options = RGBMatrixOptions()
-        options.rows = self.args.rows
-        options.cols = self.args.cols
-        options.brightness = self.args.brightness
-        options.gpio_slowdown = self.args.gpio_slowdown
+        options.rows = self.args.led_rows
+        options.cols = self.args.led_cols
+        options.brightness = self.args.led_brightness
+        options.gpio_slowdown = self.args.led_slowdown_gpio
         options.chain_length = 1
         options.parallel = 1
         options.hardware_mapping = 'regular'  # If you have an Adafruit HAT: 'adafruit-hat'
