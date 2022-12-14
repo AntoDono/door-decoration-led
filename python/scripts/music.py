@@ -2,7 +2,8 @@ import pygame
 
 class Music():
     def __init__(self):
-        pygame.mixer.init()
+        pygame.mixer.pre_init(44100, 16, 2, 4096) #frequency, size, channels, buffersize
+        pygame.init() #turn all of pygame on.
         self.song = None
 
     def play(self, path):
