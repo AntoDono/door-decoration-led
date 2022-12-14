@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from gifViewer import GifViewer
 from music import Music
 

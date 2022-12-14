@@ -5,9 +5,9 @@ class Music():
         pygame.mixer.init()
         self.song = None
 
-    def play(filepath):
-        self.song = pygame.mixer.Sound(filepath)
+    def play(self, path):
+        self.song = pygame.mixer.Sound(path)
         self.song.play()
 
-    def pause():
+    def pause(self):
         self.song.pause()
