@@ -1,14 +1,14 @@
 #!/usr/bin/env python 
 import os
+import time
 import signal
-import asyncio
 import threading
 import subprocess
 
 # LED SETTINGS
 LED_ROWS = 32
 LED_COLS = 64
-LED_BRIGHTNESS = 75
+LED_BRIGHTNESS = 65
 LED_SLOWDOWN_GPIO = 2
 LED_REFRESH_LIMIT = 100 #in hertz
 LED_NO_HARDWARE_PULSE = True
@@ -38,10 +38,10 @@ MUSIC_SHOW = [
 # Duration is in milliseconds
 # LED Cycle
 LED_SHOW = [
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.gif"], "duration": 3000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 5000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 2000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 3000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.gif"], "duration": 6000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 8000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 5000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 6000, "music": None},
 ]
 
 INTERRUPTION = [
@@ -78,6 +78,10 @@ def process_command(thread_type, arg):
 def kill_process(pid):
     os.kill(pid, signal.SIGTERM)
 
+def led_timer(millseconds):
+    time.sleep(millseconds/1000)
+    kill_process(led_process.pid)
+
 def cycle_music():
 
     music_index = 0
@@ -98,6 +102,10 @@ def cycle_led():
     
     while (True):
         try:
+            
+            timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
+            timer_thread.start()
+
             process_command("led", LED_SHOW[led_index]["arg"])
             led_index+=1
 
