@@ -17,6 +17,37 @@ LED_NO_HARDWARE_PULSE = True
 
 VOLUME = 1000 # MAX VOLUME IS 32768
 
+# music name to path
+MUSIC_REFERENCE = {
+    "all_i_want": "./assets/mp3/all_i_want.mp3",
+    "padoru": "./assets/mp3/padoru.mp3",
+    "all_i_want_remix": "./assets/mp3/all_i_want_remix.mp3",
+    "sus_effect": "./assets/mp3/sus_effect.mp3",
+    "amongus": "./assets/mp3/amongus_drip.mp3",
+}
+
+
+# Music Cycle
+# True means until song finishes
+MUSIC_SHOW = [
+    "all_i_want",
+    "padoru",
+    "all_i_want_remix"
+]
+
+# Duration is in milliseconds
+# LED Cycle
+LED_SHOW = [
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.gif"], "duration": 3000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 5000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 2000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 3000, "music": None},
+]
+
+INTERRUPTION = [
+
+]
+
 led_process= None
 music_process = None
 
@@ -34,7 +65,7 @@ def process_music_command(filepath):
     command = f"mpg123 {filepath} -f {VOLUME}"
     return command
 
-def worker(thread_type, arg):
+def process_command(thread_type, arg):
 
     thread_type = thread_type.lower()
 
@@ -46,15 +77,44 @@ def worker(thread_type, arg):
 
 def kill_process(pid):
     os.kill(pid, signal.SIGTERM)
+
+def cycle_music():
+
+    music_index = 0
+
+    while (True):
+        try:
+            process_command("music", MUSIC_REFERENCE[MUSIC_SHOW[music_index]])
+            music_index+=1
+
+            if (music_index >= len(MUSIC_SHOW)):
+                music_index = 0
+        except KeyboardInterrupt:
+            return
+
+def cycle_led():
+
+    led_index = 0
+    
+    while (True):
+        try:
+            process_command("led", LED_SHOW[led_index])
+            led_index+=1
+
+            if (led_index >= len(LED_SHOW)):
+                led_index = 0
+        except KeyboardInterrupt:
+            return
+
     
 
 def main():
 
-    led_thread = threading.Thread(target=worker, args=["led", ["./scripts/image-infinite", "./assets/images/xmas1.gif"]])
-    music_thread = threading.Thread(target=worker, args=["music", "./assets/mp3/Merry_Christmas_Trap.mp3"])
+    led_cycle_thread = threading.Thread(target=cycle_led)
+    music_cycle_thread = threading.Thread(target=cycle_music)
 
-    led_thread.start()
-    music_thread.start()
+    led_cycle_thread.start()
+    music_cycle_thread.start()
 
 
 if __name__ == '__main__':

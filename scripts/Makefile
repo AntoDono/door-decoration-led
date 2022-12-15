@@ -1,7 +1,7 @@
 CFLAGS=-Wall -O3 -g -Wextra -Wno-unused-parameter
 CXXFLAGS=$(CFLAGS)
-OBJECTS=demo-main.o minimal-example.o c-example.o text.o scrolling-text.o clock.o ledcat.o input-example.o pixel-mover.o
-BINARIES=demo minimal-example c-example text scrolling-text clock ledcat input-example pixel-mover
+OBJECTS=demo-main.o minimal-example.o c-example.o text.o scroll-text.o clock.o ledcat.o input-example.o pixel-mover.o
+BINARIES=demo minimal-example c-example text scroll-text clock ledcat input-example pixel-mover
 
 # Where our library resides. You mostly only need to change the
 # RGB_LIB_DISTRIBUTION, this is where the library is checked out.
@@ -27,7 +27,7 @@ demo : demo-main.o $(RGB_LIBRARY)
 minimal-example : minimal-example.o
 input-example : input-example.o
 text: text.o
-scrolling-text : scrolling-text.o
+scroll-text : scroll-text.o
 clock : clock.o
 ledcat : ledcat.o
 pixel-mover : pixel-mover.o
