@@ -88,6 +88,8 @@ def led_timer(millseconds):
 
 def cycle_music():
 
+    global music_process
+
     music_index = 0
 
     while (True):
@@ -95,12 +97,17 @@ def cycle_music():
             process_command("music", MUSIC_REFERENCE[MUSIC_SHOW[music_index]])
             music_index+=1
 
+            while(not isinstance(music_process, subprocess.CompletedProcess)):
+                pass
+
             if (music_index >= len(MUSIC_SHOW)):
                 music_index = 0
         except KeyboardInterrupt:
             return
 
 def cycle_led():
+
+    global led_process
 
     led_index = 0
     
@@ -112,6 +119,9 @@ def cycle_led():
 
             process_command("led", LED_SHOW[led_index]["arg"])
             led_index+=1
+
+            while(not isinstance(led_process, subprocess.CompletedProcess)):
+                pass
 
             if (led_index >= len(LED_SHOW)):
                 led_index = 0
