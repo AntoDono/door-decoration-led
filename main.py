@@ -1,6 +1,7 @@
 #!/usr/bin/env python 
 import os
 import time
+import psutil
 import signal
 import threading
 import subprocess
@@ -80,10 +81,12 @@ def process_command(thread_type, arg):
         # led_process = subprocess.Popen(process_led_command(arg), shell=True)
         led_process = subprocess.Popen("python3 test.py", stdout=subprocess.PIPE, shell=True)
 
-def kill_process(pid):
-    led_process.kill()
-    print(led_process)
-
+def kill_process(proc_pid):
+    process = psutil.Process(proc_pid)
+    for proc in process.children(recursive=True):
+        proc.kill()
+    process.kill()
+    
 def led_timer(millseconds):
     global led_process
 
