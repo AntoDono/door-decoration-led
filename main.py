@@ -42,9 +42,9 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 15000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 1000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 1000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 1000, "music": None},
 ]
 
 INTERRUPTION = [
@@ -77,7 +77,8 @@ def process_command(thread_type, arg):
     if (thread_type == "music"):
         music_process = subprocess.run(process_music_command(arg), shell=True)
     elif (thread_type == "led"):
-        led_process = subprocess.Popen(process_led_command(arg), shell=True)
+        # led_process = subprocess.Popen(process_led_command(arg), shell=True)
+        led_process = subprocess.Popen("python test.py", shell=True)
 
 def kill_process(pid):
     os.kill(pid, signal.SIGTERM)
@@ -118,6 +119,7 @@ def cycle_led():
             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
             timer_thread.start()
 
+            # process_command("led", LED_SHOW[led_index]["arg"])
             process_command("led", LED_SHOW[led_index]["arg"])
             led_index+=1
 
@@ -135,7 +137,7 @@ def main():
     music_cycle_thread = threading.Thread(target=cycle_music)
 
     led_cycle_thread.start()
-    music_cycle_thread.start()
+    # music_cycle_thread.start()
 
 
 if __name__ == '__main__':
