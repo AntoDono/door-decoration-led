@@ -42,9 +42,9 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 5"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 5"], "duration": 10000, "music": None},
 ]
 
 INTERRUPTION = [
@@ -135,7 +135,7 @@ def main():
     music_cycle_thread = threading.Thread(target=cycle_music)
 
     led_cycle_thread.start()
-    # music_cycle_thread.start()
+    music_cycle_thread.start()
 
 
 if __name__ == '__main__':
