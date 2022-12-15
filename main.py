@@ -51,10 +51,10 @@ def kill_process(pid):
 def main():
 
     led_thread = threading.Thread(target=worker, args=["led", ["./scripts/image-infinite", "./assets/images/xmas1.gif"]])
-    # music_thread = threading.Thread(target=worker, args=["music", "./assets/mp3/Merry_Christmas_Trap.mp3"])
+    music_thread = threading.Thread(target=worker, args=["music", "./assets/mp3/Merry_Christmas_Trap.mp3"])
 
     led_thread.start()
-    # music_thread.start()
+    music_thread.start()
 
 
 if __name__ == '__main__':
