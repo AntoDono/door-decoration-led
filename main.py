@@ -38,10 +38,13 @@ MUSIC_SHOW = [
 # Duration is in milliseconds
 # LED Cycle
 LED_SHOW = [
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.gif"], "duration": 6000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 8000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 5000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 6000, "music": None},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.gif"], "duration": 10000, "music": None},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 5"], "duration": 10000, "music": None},
 ]
 
 INTERRUPTION = [
@@ -83,7 +86,7 @@ def led_timer(millseconds):
     global led_process
 
     time.sleep(millseconds/1000)
-    print("KILLEd")
+    print("LED Process Killed")
     kill_process(led_process.pid)
     led_process = None
 
