@@ -81,7 +81,7 @@ def process_command(thread_type, arg):
         led_process = subprocess.Popen("python3 test.py", shell=True)
 
 def kill_process(pid):
-    os.kill(pid, signal.SIGTERM)
+    os.kill(pid, signal.CTRL_C_EVENT)
 
 def led_timer(millseconds):
     global led_process
