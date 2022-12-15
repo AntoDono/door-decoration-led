@@ -121,7 +121,7 @@ def cycle_led():
             led_index+=1
 
             while(not isinstance(led_process, subprocess.CompletedProcess)):
-                pass
+                print(led_process)
 
             if (led_index >= len(LED_SHOW)):
                 led_index = 0
