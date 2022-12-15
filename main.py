@@ -15,7 +15,7 @@ LED_NO_HARDWARE_PULSE = True
 
 # MUSIC SETTINGS
 
-VOLUME = 2000 # MAX VOLUME IS 32768
+VOLUME = 1000 # MAX VOLUME IS 32768
 
 led_process= None
 music_process = None
@@ -24,7 +24,7 @@ def process_led_command(arg):
     if (not isinstance(arg, list)):
         Exception("Process LED takes a list as argument")
 
-    command = f"{arg[0]} {arg[1]} --led-rows {LED_ROWS} --led-cols {LED_COLS} --led-brightness {LED_BRIGHTNESS} --led-slowdown-gpio {LED_SLOWDOWN_GPIO} --led-fresh-limit {LED_REFRESH_LIMIT}"
+    command = f"{arg[0]} {arg[1]} --led-rows {LED_ROWS} --led-cols {LED_COLS} --led-brightness {LED_BRIGHTNESS} --led-slowdown-gpio {LED_SLOWDOWN_GPIO} --led-refresh-limit {LED_REFRESH_LIMIT}"
     if (LED_NO_HARDWARE_PULSE):
         command += " --led-no-hardware-pulse"
     print(command)
