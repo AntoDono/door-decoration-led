@@ -1,7 +1,6 @@
 #!/usr/bin/env python 
 import os
 import time
-import psutil
 import signal
 import threading
 import subprocess
@@ -31,8 +30,8 @@ MUSIC_REFERENCE = {
 # Music Cycle
 # True means until song finishes
 MUSIC_SHOW = [
-    "all_i_want",
     "padoru",
+    "all_i_want",
     "all_i_want_remix"
 ]
 
