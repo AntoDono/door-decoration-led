@@ -3,5 +3,5 @@ import time
 count = 0
 while True:
     count+=1
-    print(count)
+    print(time.localtime())
     time.sleep(1)
