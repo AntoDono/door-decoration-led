@@ -86,7 +86,7 @@ def kill_process(proc_pid):
     for proc in process.children(recursive=True):
         proc.kill()
     process.kill()
-    
+
 def led_timer(millseconds):
     global led_process
 
