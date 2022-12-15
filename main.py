@@ -72,15 +72,17 @@ def process_command(thread_type, arg):
     thread_type = thread_type.lower()
 
     if (thread_type == "music"):
-        music_process = subprocess.run(process_music_command(arg), shell=True)
+        music_process = subprocess.Popen(process_music_command(arg), shell=True)
     elif (thread_type == "led"):
-        led_process = subprocess.run(process_led_command(arg), shell=True)
+        led_process = subprocess.Popen(process_led_command(arg), shell=True)
 
 
 def kill_process(pid):
     os.kill(pid, signal.SIGTERM)
 
 def led_timer(millseconds):
+    global led_process
+
     time.sleep(millseconds/1000)
     kill_process(led_process.pid)
 
