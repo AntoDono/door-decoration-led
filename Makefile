@@ -13,12 +13,12 @@ all : $(RGB_LIBRARY)
 
 $(RGB_LIBRARY): FORCE
 	$(MAKE) -C $(RGB_LIBDIR)
-	$(MAKE) -C examples-api-use
+	$(MAKE) -C scripts
 
 clean:
 	$(MAKE) -C lib clean
 	$(MAKE) -C utils clean
-	$(MAKE) -C examples-api-use clean
+	$(MAKE) -C scripts clean
 	$(MAKE) -C $(PYTHON_LIB_DIR) clean
 
 build-csharp:

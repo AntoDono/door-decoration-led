@@ -1,7 +1,7 @@
 CFLAGS=-Wall -O3 -g -Wextra -Wno-unused-parameter
 CXXFLAGS=$(CFLAGS)
-OBJECTS=demo-main.o minimal-example.o c-example.o text-example.o scrolling-text-example.o clock.o ledcat.o input-example.o pixel-mover.o
-BINARIES=demo minimal-example c-example text-example scrolling-text-example clock ledcat input-example pixel-mover
+OBJECTS=demo-main.o minimal-example.o c-example.o text.o scrolling-text.o clock.o ledcat.o input-example.o pixel-mover.o
+BINARIES=demo minimal-example c-example text scrolling-text clock ledcat input-example pixel-mover
 
 # Where our library resides. You mostly only need to change the
 # RGB_LIB_DISTRIBUTION, this is where the library is checked out.
@@ -12,7 +12,7 @@ RGB_LIBRARY_NAME=rgbmatrix
 RGB_LIBRARY=$(RGB_LIBDIR)/lib$(RGB_LIBRARY_NAME).a
 LDFLAGS+=-L$(RGB_LIBDIR) -l$(RGB_LIBRARY_NAME) -lrt -lm -lpthread
 
-# To compile image-example
+# To compile image-infinite
 MAGICK_CXXFLAGS?=$(shell GraphicsMagick++-config --cppflags --cxxflags)
 MAGICK_LDFLAGS?=$(shell GraphicsMagick++-config --ldflags --libs)
 
@@ -26,8 +26,8 @@ demo : demo-main.o $(RGB_LIBRARY)
 
 minimal-example : minimal-example.o
 input-example : input-example.o
-text-example: text-example.o
-scrolling-text-example : scrolling-text-example.o
+text: text.o
+scrolling-text : scrolling-text.o
 clock : clock.o
 ledcat : ledcat.o
 pixel-mover : pixel-mover.o
@@ -36,10 +36,10 @@ pixel-mover : pixel-mover.o
 % : %.o $(RGB_LIBRARY)
 	$(CXX) $< -o $@ $(LDFLAGS)
 
-image-example.o : image-example.cc
+image-infinite.o : image-infinite.cc
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) $(MAGICK_CXXFLAGS) -c -o $@ $<
 
-image-example: image-example.o $(RGB_LIBRARY)
+image-infinite: image-infinite.o $(RGB_LIBRARY)
 	$(CXX) $< -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
 
 image-once.o : image-once.cc
