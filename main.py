@@ -82,6 +82,7 @@ def process_command(thread_type, arg):
 
 def kill_process(pid):
     led_process.kill()
+    print(led_process)
 
 def led_timer(millseconds):
     global led_process
