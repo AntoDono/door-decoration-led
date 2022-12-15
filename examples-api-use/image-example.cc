@@ -22,7 +22,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
-
+//
 #include <exception>
 #include <Magick++.h>
 #include <magick/image.h>
