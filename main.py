@@ -78,7 +78,7 @@ def process_command(thread_type, arg):
         music_process = subprocess.run(process_music_command(arg), shell=True)
     elif (thread_type == "led"):
         # led_process = subprocess.Popen(process_led_command(arg), shell=True)
-        led_process = subprocess.Popen("python test.py", shell=True)
+        led_process = subprocess.Popen("python3 test.py", shell=True)
 
 def kill_process(pid):
     os.kill(pid, signal.SIGTERM)
