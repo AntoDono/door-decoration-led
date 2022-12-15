@@ -67,6 +67,8 @@ def process_music_command(filepath):
 
 def process_command(thread_type, arg):
 
+    global music_process, led_process
+
     thread_type = thread_type.lower()
 
     if (thread_type == "music"):
