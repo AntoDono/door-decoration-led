@@ -98,7 +98,7 @@ def cycle_led():
     
     while (True):
         try:
-            process_command("led", LED_SHOW[led_index])
+            process_command("led", LED_SHOW[led_index]["arg"])
             led_index+=1
 
             if (led_index >= len(LED_SHOW)):
