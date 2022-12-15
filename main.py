@@ -76,7 +76,6 @@ def process_command(thread_type, arg):
     elif (thread_type == "led"):
         led_process = subprocess.Popen(process_led_command(arg), shell=True)
 
-
 def kill_process(pid):
     os.kill(pid, signal.SIGTERM)
 
@@ -84,6 +83,7 @@ def led_timer(millseconds):
     global led_process
 
     time.sleep(millseconds/1000)
+    print("KILLEd")
     kill_process(led_process.pid)
 
 def cycle_music():
@@ -121,14 +121,12 @@ def cycle_led():
             led_index+=1
 
             while(not isinstance(led_process, subprocess.CompletedProcess)):
-                print(led_process)
+                pass
 
             if (led_index >= len(LED_SHOW)):
                 led_index = 0
         except KeyboardInterrupt:
             return
-
-    
 
 def main():
 
@@ -136,7 +134,7 @@ def main():
     music_cycle_thread = threading.Thread(target=cycle_music)
 
     led_cycle_thread.start()
-    music_cycle_thread.start()
+    # music_cycle_thread.start()
 
 
 if __name__ == '__main__':
