@@ -87,7 +87,7 @@ def led_timer(millseconds):
     global led_process
 
     time.sleep(millseconds/1000)
-    print("LED Process Killed")
+    print(f"LED Process Killed {led_process.pid}")
     kill_process(led_process.pid)
     led_process = None
 
