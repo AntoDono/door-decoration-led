@@ -27,6 +27,7 @@ def process_led_command(arg):
     command = f"{arg[0]} {arg[1]} --led-rows {LED_ROWS} --led-cols {LED_COLS} --led-brightness {LED_BRIGHTNESS} --led-slowdown-gpio {LED_SLOWDOWN_GPIO} --led-fresh-limit {LED_REFRESH_LIMIT}"
     if (LED_NO_HARDWARE_PULSE):
         command += " --led-no-hardware-pulse"
+    print(command)
     return command
 
 def process_music_command(filepath):
@@ -50,10 +51,10 @@ def kill_process(pid):
 def main():
 
     led_thread = threading.Thread(target=worker, args=["led", ["./scripts/image-infinite", "./assets/images/xmas1.gif"]])
-    music_thread = threading.Thread(target=worker, args=["music", "./assets/mp3/Merry_Christmas_Trap.mp3"])
+    # music_thread = threading.Thread(target=worker, args=["music", "./assets/mp3/Merry_Christmas_Trap.mp3"])
 
     led_thread.start()
-    music_thread.start()
+    # music_thread.start()
 
 
 if __name__ == '__main__':
