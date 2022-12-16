@@ -44,7 +44,7 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
     {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
