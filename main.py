@@ -10,7 +10,7 @@ import subprocess
 LED_ROWS = 32
 LED_COLS = 64
 LED_BRIGHTNESS = 65
-LED_SLOWDOWN_GPIO = 2
+LED_SLOWDOWN_GPIO = 4
 LED_REFRESH_LIMIT = 100 #in hertz
 LED_NO_HARDWARE_PULSE = True
 
@@ -45,7 +45,7 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
     {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
