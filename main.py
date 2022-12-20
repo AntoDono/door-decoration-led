@@ -25,6 +25,7 @@ LED_BRIGHTNESS = 65
 LED_SLOWDOWN_GPIO = 4
 LED_REFRESH_LIMIT = 100 #in hertz
 LED_NO_HARDWARE_PULSE = True
+DISTANCE = 10000
 
 # MUSIC SETTINGS
 
@@ -55,21 +56,17 @@ MUSIC_SHOW = [
 # Duration is in milliseconds
 # LED Cycle
 LED_SHOW = [
-    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.gif"], "duration": 10000, "music": None},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.jpg"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/tree2.png"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/scroll-text", f"{IP_ADDRESS} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 5000, "music": None, "type": 0, "count" : 0},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/sled1.jpg"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.jpg"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/tree2.png"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 4000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.jpg"], "duration": 4000, "music": None, "type": 1},
+    
+    {"arg": ["./scripts/scroll-text", f"{DISTANCE} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 1000, "music": None},
 ]
 
 INTERRUPTION = [
@@ -174,6 +171,8 @@ def cycle_led():
 
 def distance():
 
+    global DISTANCE
+
     while True:
         # set Trigger to HIGH
         GPIO.output(ULTRA_PIN_OUT, True)
@@ -199,7 +198,7 @@ def distance():
         # and divide by 2, because there and back
         distance = (TimeElapsed * 34300) / 2
 
-        print(distance)
+        DISTANCE = distance
 
         # if (distance < 200):
 
