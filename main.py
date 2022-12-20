@@ -31,7 +31,6 @@ VOLUME = 10000 # MAX VOLUME IS 32768
 # music name to path
 MUSIC_REFERENCE = {
     "all_i_want": "./assets/mp3/all_i_want.mp3",
-    "padoru": "./assets/mp3/padoru.mp3",
     "butter": "./assets/mp3/butter.mp3",
     "padoru": "./assets/mp3/padoru.mp3",
     "amongus_drip": "./assets/mp3/amongus_drip.mp3",
@@ -47,7 +46,7 @@ MUSIC_SHOW = [
     "padoru",
     "amongus_drip",
     "whitewishes",
-    "butter"
+    "butter",
     "all_i_want",
 ]
 
