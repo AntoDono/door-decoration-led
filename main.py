@@ -5,8 +5,8 @@ import psutil
 import threading
 import subprocess
 
-def getLocalIP():
-    return subprocess.check_output(['hostname', '--all-ip-addresses']).decode('utf-8').split(" ")[0]
+
+IP_ADDRESS = "Fetching IP"
 
 # LED SETTINGS
 LED_ROWS = 32
@@ -49,7 +49,7 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None, "type": 1},
-    {"arg": ["./scripts/scroll-text", f"{getLocalIP()} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 5000, "music": None, "type": 0, "count" : 0},
+    {"arg": ["./scripts/scroll-text", f"{IP_ADDRESS} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 5000, "music": None, "type": 0, "count" : 0},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 10000, "music": None, "type": 1},
 ]
@@ -145,6 +145,10 @@ def cycle_led():
         except KeyboardInterrupt:
             return
 
+def getLocalIP():
+    global IP_ADDRESS
+    IP_ADDRESS = subprocess.check_output(['hostname', '--all-ip-addresses']).decode('utf-8').split(" ")[0]
+
 def main():
 
     led_cycle_thread = threading.Thread(target=cycle_led)
@@ -152,6 +156,8 @@ def main():
 
     led_cycle_thread.start()
     music_cycle_thread.start()
+
+    getLocalIP()
     
 
 if __name__ == '__main__':
