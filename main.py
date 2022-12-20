@@ -201,7 +201,10 @@ def distance():
 
         if (distance < 200):
 
-            global interrupted
+            global interrupted, led_process
+
+            if (not led_process): 
+                continue
 
             interrupted = True
             kill_process(led_process.pid)
