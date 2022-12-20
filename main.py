@@ -56,17 +56,17 @@ MUSIC_SHOW = [
 # Duration is in milliseconds
 # LED Cycle
 LED_SHOW = [
-    # {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.jpg"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/tree2.png"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 4000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/tree2.png"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/sled1.jpg"], "duration": 4000, "music": None, "type": 1},
     
-    {"arg": ["./scripts/scroll-text", f"{DISTANCE} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 1000, "music": None},
+    # {"arg": ["./scripts/scroll-text", f"{DISTANCE} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 1000, "music": None},
 ]
 
 INTERRUPTION = [
@@ -194,42 +194,42 @@ def distance():
 
         DISTANCE = distance
 
-        # if (distance < 200):
+        if (distance < 200):
 
-        #     global interrupted, led_process
+            global interrupted, led_process
 
-        #     if (not led_process): 
-        #         continue
+            if (not led_process): 
+                continue
 
-        #     interrupted = True
+            interrupted = True
 
-        #     try:
-        #         kill_process(led_process.pid)
-        #     except:
-        #         pass
+            try:
+                kill_process(led_process.pid)
+            except:
+                pass
 
-        #     led_index = 0
+            led_index = 0
 
-        #     while (True):
-        #         try:
+            while (True):
+                try:
                     
-        #             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
-        #             timer_thread.start()
+                    timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
+                    timer_thread.start()
 
-        #             process_command("led", INTERRUPTION[led_index]["arg"])
+                    process_command("led", INTERRUPTION[led_index]["arg"])
 
-        #             led_index+=1
+                    led_index+=1
 
-        #             while(led_process):
-        #                 pass
+                    while(led_process):
+                        pass
 
-        #             if (led_index >= len(INTERRUPTION)):
-        #                 break
+                    if (led_index >= len(INTERRUPTION)):
+                        break
 
-        #         except KeyboardInterrupt:
-        #             return
+                except KeyboardInterrupt:
+                    return
 
-        #     interrupted = False
+            interrupted = False
 
 
 def main():
@@ -240,7 +240,7 @@ def main():
 
     led_cycle_thread.start()
     music_cycle_thread.start()
-    detection_thread.start()
+    # detection_thread.start()
 
 
 if __name__ == '__main__':
