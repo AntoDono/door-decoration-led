@@ -199,42 +199,44 @@ def distance():
         # and divide by 2, because there and back
         distance = (TimeElapsed * 34300) / 2
 
-        if (distance < 200):
+        print(distance)
 
-            global interrupted, led_process
+        # if (distance < 200):
 
-            if (not led_process): 
-                continue
+        #     global interrupted, led_process
 
-            interrupted = True
-            
-            try:
-                kill_process(led_process.pid)
-            except:
-                pass
+        #     if (not led_process): 
+        #         continue
 
-            led_index = 0
+        #     interrupted = True
 
-            while (True):
-                try:
+        #     try:
+        #         kill_process(led_process.pid)
+        #     except:
+        #         pass
+
+        #     led_index = 0
+
+        #     while (True):
+        #         try:
                     
-                    timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
-                    timer_thread.start()
+        #             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
+        #             timer_thread.start()
 
-                    process_command("led", INTERRUPTION[led_index]["arg"])
+        #             process_command("led", INTERRUPTION[led_index]["arg"])
 
-                    led_index+=1
+        #             led_index+=1
 
-                    while(led_process):
-                        pass
+        #             while(led_process):
+        #                 pass
 
-                    if (led_index >= len(INTERRUPTION)):
-                        break
+        #             if (led_index >= len(INTERRUPTION)):
+        #                 break
 
-                except KeyboardInterrupt:
-                    return
+        #         except KeyboardInterrupt:
+        #             return
 
-            interrupted = False
+        #     interrupted = False
 
 
 def main():
