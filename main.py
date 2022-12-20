@@ -139,7 +139,7 @@ def cycle_led():
 
             if (LED_SHOW[led_index]["type"] == 0):
                 LED_SHOW[led_index]["count"] += 1
-                if (LED_SHOW[led_index]["count"] > 3):
+                if (LED_SHOW[led_index]["count"] >= 3):
                     LED_SHOW.pop(led_index)
                     led_index-=1
 
