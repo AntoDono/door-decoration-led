@@ -49,7 +49,7 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None, "type": 1},
-    {"arg": ["./scripts/scroll-text", f"{getLocalIP()} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 50000, "music": None, "type": 0},
+    {"arg": ["./scripts/scroll-text", f"{getLocalIP()} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 5000, "music": None, "type": 0, "count" : 0},
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 10000, "music": None, "type": 1},
 ]
@@ -130,9 +130,12 @@ def cycle_led():
             process_command("led", LED_SHOW[led_index]["arg"])
 
             if (LED_SHOW[led_index]["type"] == 0):
-                LED_SHOW.pop(led_index)
-            else:
-                led_index+=1
+                LED_SHOW[led_index]["count"] += 1
+                if (LED_SHOW[led_index]["count"] > 3):
+                    LED_SHOW.pop(led_index)
+                    led_index-=1
+
+            led_index+=1
 
             while(led_process):
                 pass
