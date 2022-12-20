@@ -1,10 +1,18 @@
 #!/usr/bin/env python 
 import time
-import socket
+import time
 import psutil
 import threading
 import subprocess
+import RPi.GPIO as GPIO
 
+
+ULTRA_PIN_IN = 21
+ULTRA_PIN_OUT = 20
+
+#set GPIO direction (IN / OUT)
+GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
+GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
 
 IP_ADDRESS = "Fetching IP"
 
@@ -24,9 +32,12 @@ VOLUME = 10000 # MAX VOLUME IS 32768
 MUSIC_REFERENCE = {
     "all_i_want": "./assets/mp3/all_i_want.mp3",
     "padoru": "./assets/mp3/padoru.mp3",
-    "all_i_want_remix": "./assets/mp3/all_i_want_remix.mp3",
+    "butter": "./assets/mp3/butter.mp3",
+    "padoru": "./assets/mp3/padoru.mp3",
+    "amongus_drip": "./assets/mp3/amongus_drip.mp3",
     "sus_effect": "./assets/mp3/sus_effect.mp3",
     "amongus": "./assets/mp3/amongus_drip.mp3",
+    "whitewishes": "./assets/mp3/white.mp3",
 }
 
 
@@ -34,8 +45,10 @@ MUSIC_REFERENCE = {
 # True means until song finishes
 MUSIC_SHOW = [
     "padoru",
+    "amongus_drip",
+    "whitewishes",
+    "butter"
     "all_i_want",
-    "all_i_want_remix"
 ]
 
 # Duration is in milliseconds
@@ -59,11 +72,12 @@ LED_SHOW = [
 ]
 
 INTERRUPTION = [
-
+    {"arg": ["./scripts/scroll-text", f"'GET OUT OF MY WAY' -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 5000, "music": None},
 ]
 
 led_process= None
 music_process = None
+interrupted = False
 
 def process_led_command(arg):
     if (not isinstance(arg, list)):
@@ -149,7 +163,7 @@ def cycle_led():
 
             led_index+=1
 
-            while(led_process):
+            while(led_process or interrupted):
                 pass
 
             if (led_index >= len(LED_SHOW)):
@@ -157,14 +171,73 @@ def cycle_led():
         except KeyboardInterrupt:
             return
 
+def distance():
+
+    while True:
+        # set Trigger to HIGH
+        GPIO.output(ULTRA_PIN_OUT, True)
+    
+        # set Trigger after 0.01ms to LOW
+        time.sleep(0.00001)
+        GPIO.output(ULTRA_PIN_OUT, False)
+    
+        StartTime = time.time()
+        StopTime = time.time()
+    
+        # save StartTime
+        while GPIO.input(ULTRA_PIN_IN) == 0:
+            StartTime = time.time()
+    
+        # save time of arrival
+        while GPIO.input(ULTRA_PIN_IN) == 1:
+            StopTime = time.time()
+    
+        # time difference between start and arrival
+        TimeElapsed = StopTime - StartTime
+        # multiply with the sonic speed (34300 cm/s)
+        # and divide by 2, because there and back
+        distance = (TimeElapsed * 34300) / 2
+
+        if (distance < 200):
+
+            global interrupted
+
+            interrupted = True
+            kill_process(led_process.pid)
+
+            index = 0
+
+            while (True):
+                try:
+                    
+                    timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
+                    timer_thread.start()
+
+                    process_command("led", INTERRUPTION[led_index]["arg"])
+
+                    led_index+=1
+
+                    while(led_process):
+                        pass
+
+                    if (index >= len(INTERRUPTION)):
+                        break
+
+                except KeyboardInterrupt:
+                    return
+
+            interrupted = False
+
 
 def main():
 
     led_cycle_thread = threading.Thread(target=cycle_led)
     music_cycle_thread = threading.Thread(target=cycle_music)
+    detection_thread = threading.Thread(target=distance)
 
     led_cycle_thread.start()
     music_cycle_thread.start()
+    # detection_thread.start()
 
 
 if __name__ == '__main__':
