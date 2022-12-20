@@ -116,6 +116,10 @@ def cycle_music():
         except KeyboardInterrupt:
             return
 
+def getLocalIP():
+    global IP_ADDRESS
+    IP_ADDRESS = subprocess.check_output(['hostname', '--all-ip-addresses']).decode('utf-8').split(" ")[0]
+
 def cycle_led():
 
     global led_process
@@ -127,6 +131,8 @@ def cycle_led():
             
             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
             timer_thread.start()
+            fetch_ip = threading.Thread(target=getLocalIP, args=[])
+            fetch_ip.start()
             process_command("led", LED_SHOW[led_index]["arg"])
 
             if (LED_SHOW[led_index]["type"] == 0):
@@ -145,9 +151,6 @@ def cycle_led():
         except KeyboardInterrupt:
             return
 
-def getLocalIP():
-    global IP_ADDRESS
-    IP_ADDRESS = subprocess.check_output(['hostname', '--all-ip-addresses']).decode('utf-8').split(" ")[0]
 
 def main():
 
@@ -157,8 +160,6 @@ def main():
     led_cycle_thread.start()
     music_cycle_thread.start()
 
-    getLocalIP()
-    
 
 if __name__ == '__main__':
     main()
