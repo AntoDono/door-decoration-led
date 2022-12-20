@@ -11,8 +11,8 @@ ULTRA_PIN_IN = 21
 ULTRA_PIN_OUT = 20
 
 #set GPIO direction (IN / OUT)
-# GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
-# GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
+GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
+GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
 
 IP_ADDRESS = "Fetching IP"
 
@@ -236,7 +236,7 @@ def main():
 
     led_cycle_thread.start()
     music_cycle_thread.start()
-    # detection_thread.start()
+    detection_thread.start()
 
 
 if __name__ == '__main__':
