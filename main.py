@@ -6,7 +6,7 @@ import threading
 import subprocess
 
 def getLocalIP():
-    return socket.gethostbyname(socket.gethostname())
+    return subprocess.check_output(['hostname', '--all-ip-addresses']).split(" ")[0]
 
 # LED SETTINGS
 LED_ROWS = 32
@@ -150,8 +150,6 @@ def main():
     led_cycle_thread.start()
     music_cycle_thread.start()
     
-    print(subprocess.check_output(['hostname', '--all-ip-addresses']))
-
 
 if __name__ == '__main__':
     main()
