@@ -45,7 +45,7 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.png"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.png"], "duration": 6000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 6000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/tree2.png"], "duration": 6000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None, "type": 1},
