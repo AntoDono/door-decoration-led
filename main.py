@@ -127,12 +127,12 @@ def cycle_led():
             
             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
             timer_thread.start()
+            process_command("led", LED_SHOW[led_index]["arg"])
 
             if (LED_SHOW[led_index]["type"] == 0):
                 LED_SHOW.pop(led_index)
-
-            process_command("led", LED_SHOW[led_index]["arg"])
-            led_index+=1
+            else:
+                led_index+=1
 
             while(led_process):
                 pass
