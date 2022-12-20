@@ -128,6 +128,8 @@ def cycle_led():
     
     while (True):
         try:
+
+            print(IP_ADDRESS)
             
             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
             timer_thread.start()
