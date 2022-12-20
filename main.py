@@ -46,12 +46,12 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
     {"arg": ["./scripts/scroll-text", f"{getLocalIP()} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 50000, "music": None, "type": 0},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None, "type": 1},
-    # # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
-    # {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None, "type": 1},
+    # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 10000, "music": None, "type": 1},
 ]
 
 INTERRUPTION = [
