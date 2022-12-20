@@ -153,12 +153,6 @@ def cycle_led():
             fetch_ip.start()
             process_command("led", LED_SHOW[led_index]["arg"])
 
-            if (LED_SHOW[led_index]["type"] == 0):
-                LED_SHOW[led_index]["count"] += 1
-                if (LED_SHOW[led_index]["count"] >= 3):
-                    LED_SHOW.pop(led_index)
-                    led_index-=1
-
             led_index+=1
 
             while(led_process or interrupted):
