@@ -5,6 +5,9 @@ import psutil
 import threading
 import subprocess
 
+def getLocalIP():
+    return socket.gethostbyname(socket.gethostname())
+
 # LED SETTINGS
 LED_ROWS = 32
 LED_COLS = 64
@@ -57,9 +60,6 @@ INTERRUPTION = [
 
 led_process= None
 music_process = None
-
-def getLocalIP():
-    return socket.gethostbyname(socket.gethostname())
 
 def process_led_command(arg):
     if (not isinstance(arg, list)):
