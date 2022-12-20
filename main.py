@@ -206,7 +206,7 @@ def distance():
             interrupted = True
             kill_process(led_process.pid)
 
-            index = 0
+            led_index = 0
 
             while (True):
                 try:
@@ -221,7 +221,7 @@ def distance():
                     while(led_process):
                         pass
 
-                    if (index >= len(INTERRUPTION)):
+                    if (led_index >= len(INTERRUPTION)):
                         break
 
                 except KeyboardInterrupt:
