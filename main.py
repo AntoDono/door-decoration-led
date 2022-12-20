@@ -1,8 +1,7 @@
 #!/usr/bin/env python 
-import os
 import time
+import socket
 import psutil
-import signal
 import threading
 import subprocess
 
@@ -43,13 +42,13 @@ LED_SHOW = [
     # {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/sled1.gif"], "duration": 10000, "music": None},
     # {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/scroll-text", "Happy Holidays! -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/scroll-text", f"{getLocalIP()} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 50000, "music": None, "type": 0},
+    {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 10000, "music": None, "type": 1},
     # {"arg": ["./scripts/image-infinite", "./assets/images/xmas1.jpg"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None},
-    {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 10000, "music": None},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/tree1.gif"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 10000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 10000, "music": None, "type": 1},
 ]
 
 INTERRUPTION = [
@@ -58,6 +57,9 @@ INTERRUPTION = [
 
 led_process= None
 music_process = None
+
+def getLocalIP():
+    return socket.gethostbyname(socket.gethostname())
 
 def process_led_command(arg):
     if (not isinstance(arg, list)):
@@ -125,6 +127,9 @@ def cycle_led():
             
             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
             timer_thread.start()
+
+            if (LED_SHOW[led_index]["type"] == 0):
+                LED_SHOW.pop(led_index)
 
             process_command("led", LED_SHOW[led_index]["arg"])
             led_index+=1
