@@ -6,7 +6,7 @@ import threading
 import subprocess
 
 def getLocalIP():
-    return str(subprocess.check_output(['hostname', '--all-ip-addresses'])).split(" ")[0]
+    return subprocess.check_output(['hostname', '--all-ip-addresses']).decode('utf-8').split(" ")[0]
 
 # LED SETTINGS
 LED_ROWS = 32
