@@ -150,7 +150,7 @@ def main():
     led_cycle_thread.start()
     music_cycle_thread.start()
     
-    print(ips = subprocess.check_output(['hostname', '--all-ip-addresses']))
+    print(subprocess.check_output(['hostname', '--all-ip-addresses']))
 
 
 if __name__ == '__main__':
