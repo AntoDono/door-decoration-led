@@ -207,7 +207,11 @@ def distance():
                 continue
 
             interrupted = True
-            kill_process(led_process.pid)
+            
+            try:
+                kill_process(led_process.pid)
+            except:
+                pass
 
             led_index = 0
 
