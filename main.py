@@ -12,8 +12,8 @@ import RPi.GPIO as GPIO
 # GPIO.setmode(GPIO.BCM)
 
 #set GPIO direction (IN / OUT)
-GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
-GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
+# GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
+# GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
 
 IP_ADDRESS = "Fetching IP"
 
