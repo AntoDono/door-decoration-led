@@ -36,4 +36,4 @@ while True:
         # and divide by 2, because there and back
         distance = (TimeElapsed * 34300) / 2
 
-        print(distance)
+        print(f"Distance: {distance}")
