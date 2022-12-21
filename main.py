@@ -37,6 +37,9 @@ MUSIC_REFERENCE = {
     "amongus_drip": "./assets/mp3/amongus_drip.mp3",
     "sus_effect": "./assets/mp3/sus_effect.mp3",
     "amongus": "./assets/mp3/amongus_drip.mp3",
+    "rickroll": "./assets/mp3/rickroll.mp3",
+    "last": "./assets/mp3/last_christmas.mp3",
+    "ifi": "./assets/mp3/ifi.mp3",
     "whitewishes": "./assets/mp3/white.mp3",
 }
 
@@ -45,16 +48,20 @@ MUSIC_REFERENCE = {
 # True means until song finishes
 MUSIC_SHOW = [
     "padoru",
-    "amongus_drip",
+    "rickroll",
     "whitewishes",
+    "amongus_drip",
     "butter",
     "all_i_want",
+    "last",
+    "ifi",
 ]
 
 # Duration is in milliseconds
 # LED Cycle
 LED_SHOW = [
     {"arg": ["./scripts/image-infinite", "./assets/images/WhalenMichael.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/rickroll.gif"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/sign1.gif"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/tree2.png"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/santa1.gif"], "duration": 10000, "music": None, "type": 1},
@@ -63,6 +70,7 @@ LED_SHOW = [
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/sled1.jpg"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/santa2.gif"], "duration": 4000, "music": None, "type": 1},
     
     # {"arg": ["./scripts/scroll-text", f"{DISTANCE} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 1000, "music": None},
 ]
