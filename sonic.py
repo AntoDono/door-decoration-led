@@ -2,8 +2,8 @@ import time
 import RPi.GPIO as GPIO
 
 
-ULTRA_PIN_IN = 21
-ULTRA_PIN_OUT = 20
+ULTRA_PIN_IN = 20
+ULTRA_PIN_OUT = 21
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
