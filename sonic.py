@@ -6,7 +6,6 @@ ULTRA_PIN_IN = 20
 ULTRA_PIN_OUT = 21
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 #set GPIO direction (IN / OUT)
 GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
 GPIO.setup(ULTRA_PIN_IN, GPIO.IN)

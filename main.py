@@ -6,10 +6,10 @@ import subprocess
 import RPi.GPIO as GPIO
 
 
-ULTRA_PIN_IN = 20
-ULTRA_PIN_OUT = 21
+# ULTRA_PIN_IN = 20
+# ULTRA_PIN_OUT = 21
 
-GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BCM)
 
 #set GPIO direction (IN / OUT)
 GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
