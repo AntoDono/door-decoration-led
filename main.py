@@ -70,7 +70,7 @@ LED_SHOW = [
     {"arg": ["./scripts/image-infinite", "./assets/images/xmas2.jpg"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/gifts1.jpg"], "duration": 4000, "music": None, "type": 1},
     {"arg": ["./scripts/image-infinite", "./assets/images/sled1.jpg"], "duration": 4000, "music": None, "type": 1},
-    {"arg": ["./scripts/image-infinite", "./assets/images/santa2.gif"], "duration": 4000, "music": None, "type": 1},
+    {"arg": ["./scripts/image-infinite", "./assets/images/santa2.gif"], "duration": 10000, "music": None, "type": 1},
     
     # {"arg": ["./scripts/scroll-text", f"{DISTANCE} -f ./fonts/clR6x12.bdf -s 5 -l -1 -y 7"], "duration": 1000, "music": None},
 ]
