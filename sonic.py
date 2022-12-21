@@ -6,13 +6,14 @@ ULTRA_PIN_IN = 21
 ULTRA_PIN_OUT = 20
 
 GPIO.setmode(GPIO.BCM)
-
+GPIO.setwarnings(False)
 #set GPIO direction (IN / OUT)
 GPIO.setup(ULTRA_PIN_OUT, GPIO.OUT)
 GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
 
 while True:
         # set Trigger to HIGH
+        print("Hello")
         GPIO.output(ULTRA_PIN_OUT, True)
     
         # set Trigger after 0.01ms to LOW
