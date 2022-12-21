@@ -24,6 +24,7 @@ while True:
     
         # save StartTime
         while GPIO.input(ULTRA_PIN_IN) == 0:
+            print("Waiting for startime?")
             StartTime = time.time()
     
         # save time of arrival
