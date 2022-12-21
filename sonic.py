@@ -13,7 +13,6 @@ GPIO.setup(ULTRA_PIN_IN, GPIO.IN)
 
 while True:
         # set Trigger to HIGH
-        print("Hello")
         GPIO.output(ULTRA_PIN_OUT, True)
     
         # set Trigger after 0.01ms to LOW
@@ -29,6 +28,7 @@ while True:
     
         # save time of arrival
         while GPIO.input(ULTRA_PIN_IN) == 1:
+            print("Waiting for arrival")
             StopTime = time.time()
     
         # time difference between start and arrival
