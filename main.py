@@ -1,6 +1,5 @@
 #!/usr/bin/env python 
 import time
-import time
 import psutil
 import threading
 import subprocess
@@ -25,7 +24,6 @@ LED_BRIGHTNESS = 65
 LED_SLOWDOWN_GPIO = 4
 LED_REFRESH_LIMIT = 100 #in hertz
 LED_NO_HARDWARE_PULSE = True
-DISTANCE = 10000
 
 # MUSIC SETTINGS
 
@@ -110,9 +108,7 @@ def kill_process(proc_pid):
 
 def led_timer(millseconds):
     global led_process
-
     time.sleep(millseconds/1000)
-    print("LED Process Killed")
     kill_process(led_process.pid)
     led_process = None
 
@@ -132,10 +128,6 @@ def cycle_music():
         except KeyboardInterrupt:
             return
 
-def getLocalIP():
-    global IP_ADDRESS
-    IP_ADDRESS = subprocess.check_output(['hostname', '--all-ip-addresses']).decode('utf-8').split(" ")[0]
-
 def cycle_led():
 
     global led_process
@@ -149,8 +141,6 @@ def cycle_led():
             
             timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
             timer_thread.start()
-            fetch_ip = threading.Thread(target=getLocalIP, args=[])
-            fetch_ip.start()
             process_command("led", LED_SHOW[led_index]["arg"])
 
             led_index+=1
@@ -164,8 +154,6 @@ def cycle_led():
             return
 
 def distance():
-
-    global DISTANCE
 
     while True:
         # set Trigger to HIGH
@@ -192,8 +180,6 @@ def distance():
         # and divide by 2, because there and back
         distance = (TimeElapsed * 34300) / 2
 
-        DISTANCE = distance
-
         if (distance < 200):
 
             global interrupted, led_process
@@ -213,7 +199,7 @@ def distance():
             while (True):
                 try:
                     
-                    timer_thread = threading.Thread(target=led_timer, args=[LED_SHOW[led_index]["duration"]])
+                    timer_thread = threading.Thread(target=led_timer, args=[INTERRUPTION[led_index]["duration"]])
                     timer_thread.start()
 
                     process_command("led", INTERRUPTION[led_index]["arg"])
